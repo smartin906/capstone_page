@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project One-Pager</title>
+  <meta name="description" content="Clean, accessible single-page layout for summarizing a project and process." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Base styles: minimal, readable, print-friendly, and accessible. -->
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a; /* slate-900 */
+      --muted: #475569; /* slate-600 */
+      --accent: #2563eb; /* blue-600 */
+      --accent-fg: #ffffff;
+      --border: #e2e8f0; /* slate-200 */
+      --card: #f8fafc; /* slate-50 */
+      --radius: 14px;
+      --maxw: 1000px;
+      --serif: 'Source Serif 4', serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --fg: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #60a5fa;
+        --accent-fg: #0b1220;
+        --border: #1f2937;
+        --card: #0f172a;
+      }
+      img, video { filter: brightness(0.98) contrast(1.02); }
+    }
+
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color: var(--fg); background: var(--bg); }
+
+    h1, h2 { font-family: var(--serif); }
+
+    .container { max-width: var(--maxw); margin-inline: auto; padding-inline: 1rem; }
+
+    /* Skip link */
+    .skip { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip:focus { position: fixed; left: 1rem; top: 1rem; width: auto; height: auto; padding: .5rem .75rem; background: var(--accent); color: var(--accent-fg); border-radius: .5rem; z-index: 9999; }
+
+    /* Header + nav */
+    header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); z-index: 50; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 0; }
+    .brand { font-weight: 700; letter-spacing: .2px; }
+    nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
+    nav a { display: inline-block; padding: .4rem .6rem; border-radius: .5rem; text-decoration: none; color: var(--muted); border: 1px solid transparent; }
+    nav a:hover, nav a:focus { color: var(--fg); border-color: var(--border); }
+
+    /* Hero */
+    .hero { padding: 3.5rem 0 2rem; }
+    .hero .kicker { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; font-size: .85rem; }
+    .hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; margin: .2rem 0 .8rem; }
+    .hero p { color: var(--muted); max-width: 65ch; }
+    .meta { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
+    .tag { background: var(--card); border: 1px solid var(--border); padding: .25rem .5rem; border-radius: .4rem; font-size: .85rem; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 2.25rem 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; }
+    h2 { font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.2; margin: 0 0 .75rem; }
+    .lead { color: var(--muted); }
+
+    /* Cards / blocks */
+    .grid { display: grid; gap: 1rem; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+
+    /* Media */
+    figure { margin: 0; }
+    figcaption { color: var(--muted); font-size: .9rem; margin-top: .5rem; }
+    img, video { width: 100%; height: auto; border-radius: calc(var(--radius) - 4px); display: block; }
+
+    /* Callouts */
+    .callout { border-left: 4px solid var(--accent); padding: .75rem 1rem; background: color-mix(in oklab, var(--accent) 6%, transparent); border-radius: .5rem; }
+
+    /* Lists */
+    ul { padding-left: 1rem; }
+    li + li { margin-top: .35rem; }
+
+    /* Footer */
+    footer { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .small { font-size: .92rem; color: var(--muted); }
+
+    /* Back to top */
+    .to-top { position: fixed; right: 1rem; bottom: 1rem; padding: .6rem .8rem; background: var(--accent); color: var(--accent-fg); border-radius: .6rem; text-decoration: none; font-weight: 600; box-shadow: 0 6px 18px color-mix(in oklab, var(--accent) 30%, transparent); }
+    .to-top:focus { outline: 3px solid color-mix(in oklab, var(--accent) 55%, white); outline-offset: 2px; }
+
+    /* Print tweaks */
+    @media print {
+      header, .to-top { display: none !important; }
+      section { break-inside: avoid; }
+      a { color: black; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">Your Project Title</div>
+      <nav aria-label="Section navigation">
+        <ul>
+          <li><a href="#hook">Hook</a></li>
+          <li><a href="#problem">Problem</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#questions">Questions</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#tools">Process + Tools</a></li>
+          <li><a href="#deliverables">Deliverables</a></li>
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#media">Images & Video</a></li>
+          <li><a href="#endnotes">Endnotes & Links</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <!-- HERO / TITLE / HOOK -->
+    <section class="hero" id="hook">
+      <p class="kicker">Hook</p>
+      <h1>One sentence that captures the essence of your project.</h1>
+      <p class="lead">Brief description: explain the idea in 2–3 lines for newcomers. Keep it clear and non-technical. Mention audience and outcome.</p>
+      <div class="meta">
+        <span class="tag">Semester · Capstone</span>
+        <span class="tag">Your Name</span>
+        <span class="tag">Updated: 2025-10-09</span>
+      </div>
+    </section>
+
+    <!-- PROBLEM STATEMENT -->
+    <section id="problem">
+      <h2>Problem Statement</h2>
+      <div class="callout">
+        <p><strong>In one paragraph:</strong> Define the core problem, who it affects, and why it matters now. Add constraints and success criteria.</p>
+      </div>
+    </section>
+
+    <!-- RESEARCH / DATA / TESTING RESULTS -->
+    <section id="research">
+      <h2>Relative Research, Data Collection, User Testing Results</h2>
+      <p class="lead">Summarize methods, sources, and what you learned. Use short bullets and visuals where helpful.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Key Findings</h3>
+          <ul>
+            <li>Finding A with a metric or quote.</li>
+            <li>Finding B that changed your approach.</li>
+            <li>Finding C including a surprise or contradiction.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Methods</h3>
+          <ul>
+            <li>Desk research (papers, reports, articles).</li>
+            <li>Interviews (n=8), usability tests (n=5).</li>
+            <li>Surveys (n=42), field observations.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- QUESTIONS / THOUGHTS TOWARD A SOLUTION -->
+    <section id="questions">
+      <h2>Questions, Thoughts Toward a Solution</h2>
+      <ul>
+        <li>What if we reduced steps X and Y for users?</li>
+        <li>How might we simplify onboarding for rural students?</li>
+        <li>Which constraints create the biggest friction?</li>
+      </ul>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <h2>Process</h2>
+      <p class="lead">Outline your workflow. A simple 4–6 step ladder tends to read well.</p>
+      <ol>
+        <li>Discover — context, stakeholders, constraints.</li>
+        <li>Define — problem framing, success metrics.</li>
+        <li>Ideate — sketches, flows, divergent concepts.</li>
+        <li>Prototype — low→high fidelity, testable artifacts.</li>
+        <li>Test — usability tests, iterate, measure.</li>
+        <li>Deliver — handoff, documentation, learnings.</li>
+      </ol>
+    </section>
+
+    <!-- PROCESS + TOOLS -->
+    <section id="tools">
+      <h2>Process + Tools</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Design</h3>
+          <ul>
+            <li>Figma / FigJam</li>
+            <li>Adobe CC (AI, PS, PR)</li>
+            <li>Prototyping libraries/components</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Build</h3>
+          <ul>
+            <li>Astro / React</li>
+            <li>TypeScript, Vite</li>
+            <li>p5.js (experiments)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section id="deliverables">
+      <h2>Deliverables</h2>
+      <ul>
+        <li>One-page site (this page)</li>
+        <li>Prototype link(s)</li>
+        <li>Research summary (PDF)</li>
+        <li>Source files / repo</li>
+      </ul>
+    </section>
+
+    <!-- SUMMARY -->
+    <section id="summary">
+      <h2>Summary</h2>
+      <p>Close the narrative loop: restate the original goal, the impact of your solution, and what you’d do next with more time/resources.</p>
+    </section>
+
+    <!-- MEDIA: IMAGES THROUGHOUT + OPTIONAL VIDEO -->
+    <section id="media">
+      <h2>Images &amp; Video</h2>
+      <div class="grid grid-2">
+        <figure>
+          <img src="https://picsum.photos/800/520" alt="Placeholder mockup or research artifact" />
+          <figcaption>Early concept sketch — caption with context.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://picsum.photos/801/520" alt="Prototype screen" />
+          <figcaption>Hi-fi prototype screen — caption with insight.</figcaption>
+        </figure>
+      </div>
+      <details style="margin-top:1rem">
+        <summary><strong>Optional video</strong> — click to reveal</summary>
+        <figure style="margin-top:1rem">
+          <video controls preload="metadata" poster="https://picsum.photos/seed/poster/1200/675">
+            <!-- Replace with your MP4/WebM sources -->
+            <source src="your-video.mp4" type="video/mp4" />
+            <p>Your browser does not support the video tag. <a href="#">Download the video</a>.</p>
+          </video>
+          <figcaption>Demo walkthrough (2:10).</figcaption>
+        </figure>
+      </details>
+    </section>
+
+    <!-- ENDNOTES + LINKS -->
+    <section id="endnotes">
+      <h2>Endnotes &amp; Links</h2>
+      <div class="grid grid-2">
+        <div>
+          <h3>Links</h3>
+          <ul>
+            <li><a href="#" rel="noopener">Progress Platform</a></li>
+            <li><a href="#" rel="noopener">Capstone Project</a></li>
+            <li><a href="#" rel="noopener">Works Cited / Bibliography</a></li>
+            <li><a href="#" rel="noopener">Research Docs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Endnotes</h3>
+          <ol>
+            <li>Brief citation or footnote with link.</li>
+            <li>Another note with attribution.</li>
+            <li>Data source link.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong>About this page</strong>
+        <p class="small">Built as a clean, accessible summary of a project and process. Mobile-first, print-friendly, and keyboard accessible.</p>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <p class="small"><a href="mailto:you@example.com">you@example.com</a> · <a href="https://example.com" rel="noopener">example.com</a></p>
+      </div>
+      <div>
+        <strong>License</strong>
+        <p class="small">© <span id="y">2025</span> Your Name. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="to-top" href="#top" aria-label="Back to top">↑ Top</a>
+
+  <script>
+    // Update footer year automatically
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
