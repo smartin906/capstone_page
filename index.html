@@ -49,8 +49,10 @@
 
     /* Header + nav */
     header { position: sticky; top: 0; backdrop-filter: blur(8px); background: color-mix(in oklab, var(--bg) 85%, transparent); border-bottom: 1px solid var(--border); z-index: 50; }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 0; }
+    .header-image { width: 100%; height: auto; display: block; border-radius: 0; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem 0; }
     .brand { font-weight: 700; letter-spacing: .2px; }
+    .header-nav { padding: .75rem 0; border-top: 1px solid var(--border); }
     nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
     nav a { display: inline-block; padding: .4rem .6rem; border-radius: .5rem; text-decoration: none; color: var(--muted); border: 1px solid transparent; }
     nav a:hover, nav a:focus { color: var(--fg); border-color: var(--border); }
@@ -107,8 +109,11 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <header>
-    <div class="container nav">
+    <img src="https://picsum.photos/1200/200" alt="Project header image" class="header-image" />
+    <div class="container header-top">
       <div class="brand">Steven Martin's Capstone Project Page</div>
+    </div>
+    <div class="container header-nav">
       <nav aria-label="Section navigation">
         <ul>
           <li><a href="#hook">Hook</a></li>
@@ -131,11 +136,7 @@
 higher education.</h1>
       <p><strong>Build a comprehensive brand system for a fictitious Missouri state agency focused on higher-education access.</strong>  This identity will extend across a modern, streamlined website that helps students
 easily research state colleges and universities, along with supporting materials that reinforce clarity, trust, and statewide consistency.</p>
-      <div class="meta">
-        <span class="tag">Fall 2025 · Capstone</span>
-        <span class="tag">Steven Martin</span>
-        <span class="tag">Updated: 2025-10-09</span>
-      </div>
+    
     </section>
 
     <!-- PROBLEM STATEMENT -->
