@@ -41,7 +41,7 @@
 
     h1, h2 { font-family: var(--serif); }
 
-    .container { width: 80%; margin-inline: auto; padding-inline: 1rem; }
+    .container { width: 80%; max-width: 1200px; margin-inline: auto; padding-inline: 1rem; }
 
     /* Skip link */
     .skip { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
@@ -53,9 +53,8 @@
     .brand { font-weight: 700; letter-spacing: .2px; }
     .header-image { width: 100%; height: auto; display: block; border-radius: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
     nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem .75rem; }
-    nav a { display: inline-block; padding: .4rem .6rem; border-radius: .5rem; text-decoration: none; color: var(--muted); border: 1px solid transparent; }
-    nav a:hover, nav a:focus { color: var(--fg); border-color: var(--border); }
-    .header-nav { }
+    nav a { display: inline-block; padding: .4rem .6rem; border-radius: .5rem; text-decoration: none; color: var(--muted); border: 1px solid transparent; transition: all 0.2s ease; }
+    nav a:hover, nav a:focus { color: var(--fg); border-color: var(--accent); background: color-mix(in oklab, var(--accent) 8%, transparent); }
 
     /* Hero */
     .hero { padding: 3.5rem 0 2rem; }
@@ -74,7 +73,8 @@
     /* Cards / blocks */
     .grid { display: grid; gap: 1rem; }
     .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; transition: all 0.2s ease; }
+    .card:hover { border-color: var(--accent); box-shadow: 0 4px 12px color-mix(in oklab, var(--accent) 12%, transparent); }
 
     /* Media */
     figure { margin: 0; }
@@ -132,8 +132,7 @@
       <p class="kicker">Hook</p>
       <h1>Breaking down barriers so rural Missouri students can reach
 higher education.</h1>
-      <p><strong>Build a comprehensive brand system for a fictitious Missouri state agency focused on higher-education access.</strong>  This identity will extend across a modern, streamlined website that helps students
-easily research state colleges and universities, along with supporting materials that reinforce clarity, trust, and statewide consistency.</p>
+      <p><strong>Build a comprehensive brand system for a fictitious Missouri state agency focused on higher-education access.</strong> This identity will extend across a modern, streamlined website that helps students easily research state colleges and universities, along with supporting materials that reinforce clarity, trust, and statewide consistency.</p>
     
     </section>
 
@@ -141,7 +140,7 @@ easily research state colleges and universities, along with supporting materials
     <section id="problem">
       <h2>Problem Statement</h2>
       <div class="callout">
-        <p><strong>Rural Missouri students often struggle with a fragmented and complex college application process, lacking the resources and guidance to navigate multiple institutions. This creates barriers that prevent many from pursuing higher education.</p>
+        <p><strong>Rural Missouri students often struggle with a fragmented and complex college application process, lacking the resources and guidance to navigate multiple institutions. This creates barriers that prevent many from pursuing higher education.</strong></p>
       </div>
     </section>
 
